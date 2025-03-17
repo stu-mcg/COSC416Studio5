@@ -9,11 +9,16 @@ public class Ball : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform ballAnchor;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private AudioSource ballAudioSource;
 
     private bool isBallActive;
 
     private void OnCollisionEnter(Collision other)
     {
+        if (ballAudioSource != null)
+        {
+            ballAudioSource.Play();
+        }
         if(other.gameObject.CompareTag("Paddle"))
         {
             Vector3 directionToFire = (transform.position - other.transform.position).normalized;
