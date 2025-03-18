@@ -578,7 +578,7 @@ MonoBehaviour:
   maxLives: 3
   ball: {fileID: 2054714181}
   bricksContainer: {fileID: 1170594424}
-  brickDestructionEffect: {fileID: 0}
+  brickDestructionEffect: {fileID: 2628396300006779242, guid: d35dfd08663384f1e851c54173406ce9, type: 3}
 --- !u!1001 &443665624
 PrefabInstance:
   m_ObjectHideFlags: 0
