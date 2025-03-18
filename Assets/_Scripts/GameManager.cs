@@ -27,10 +27,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         ball.FireBall();
     }
 
+    public ParticleSystem brickDestructionEffect;
+
+
     public void OnBrickDestroyed(Vector3 position)
     {
         // fire audio here
         // implement particle effect here
+        Instantiate(brickDestructionEffect, position, Quaternion.identity);
         // add camera shake here
         currentBrickCount--;
         Debug.Log($"Destroyed Brick at {position}, {currentBrickCount}/{totalBrickCount} remaining");
