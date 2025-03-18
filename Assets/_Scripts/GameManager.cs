@@ -27,6 +27,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         ball.FireBall();
     }
 
+    public ParticleSystem brickDestructionEffect;
+
+
     public void OnBrickDestroyed(Vector3 position)
     {
         // fire audio here
