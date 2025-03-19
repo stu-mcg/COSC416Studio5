@@ -834,7 +834,7 @@ MonoBehaviour:
     - line: '|   webGLDebugSymbols: 0'
     - line: '|   webGLEmscriptenArgs: '
     - line: '|   webGLModulesDirectory: '
-    - line: '|   webGLTemplate: PROJECT:BetterMinimalWebGL'
+    - line: '|   webGLTemplate: PROJECT:BetterMinimal'
     - line: '|   webGLAnalyzeBuildSize: 0'
     - line: '|   webGLUseEmbeddedResources: 0'
     - line: '|   webGLCompressionFormat: 0'
