@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
@@ -8,6 +9,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private int currentBrickCount;
     private int totalBrickCount;
+    private int currentLives;
+
+    public int MaxLives => maxLives;
 
     private void OnEnable()
     {
@@ -15,6 +19,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         ball.ResetBall();
         totalBrickCount = bricksContainer.childCount;
         currentBrickCount = bricksContainer.childCount;
+        currentLives = maxLives;
+        HUDManager.Instance.UpdateLivesDisplay(currentLives);
     }
 
     private void OnDisable()
@@ -43,9 +49,30 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void KillBall()
     {
-        maxLives--;
+        currentLives--;
+        HUDManager.Instance.UpdateLivesDisplay(currentLives);
         // update lives on HUD here
-        // game over UI if maxLives < 0, then exit to main menu after delay
-        ball.ResetBall();
+        // game over UI if currentLives <= 0, then exit to main menu after delay
+        if (currentLives <= 0)
+        {
+            currentLives = 0;
+            GameOver();
+        }
+        else
+        {
+            ball.ResetBall();
+        }
+    }
+    private void GameOver()
+    {
+        Time.timeScale = 0; // Freeze time
+        HUDManager.Instance.ShowGameOverScreen(); // Show game-over screen
+        StartCoroutine(ReturnToMainMenuAfterDelay());
+    }
+    private IEnumerator ReturnToMainMenuAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(1.5f); // Wait in real-time (ignoring Time.timeScale)
+        Time.timeScale = 1; // Reset time scale
+        SceneHandler.Instance.LoadMenuScene(); // Load main menu
     }
 }
