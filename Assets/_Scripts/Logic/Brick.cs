@@ -9,6 +9,10 @@ public class Brick : MonoBehaviour
     {
         if (destroyRoutine != null) return;
         if (!other.gameObject.CompareTag("Ball")) return;
+
+        // camera shake
+        CameraShake.Shake(0.5f, 0.5f);
+
         destroyRoutine = StartCoroutine(DestroyWithDelay());
     }
 
