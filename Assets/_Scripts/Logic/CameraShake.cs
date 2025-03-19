@@ -1,16 +1,16 @@
 using UnityEngine;
+using DG.Tweening;
 
-public class CameraShake : MonoBehaviour
+public class CameraShake : SingletonMonoBehavior<CameraShake>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static void Shake(float duration, float strength)
     {
-        
+        Instance.OnShake(duration, strength);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnShake(float duration, float strength)
     {
-        
+        transform.DOShakePosition(duration, strength);
+        transform.DOShakeRotation(duration, strength);
     }
 }
